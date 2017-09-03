@@ -6,4 +6,5 @@ import entity.User;
 
 public interface UserDao {
 	List<User> findUser();
+	int insertUser(User user);
 }

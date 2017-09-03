@@ -4,18 +4,41 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
 <configuration>
+	<properties resource="properties/properties.properties">
+	 	<!-- 开启下面的注解，就可以在没有找到对应的propertyName时使用默认值 -->
+	 	<!-- <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> -->
+	</properties>
+	
+	<!-- <properties>
+		<property name="driver" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/shiro"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</properties> -->
+	
+	<!-- <typeAliases>
+		<typeAlias type="entity.User" alias="User"/>
+	</typeAliases> -->
+	<typeAliases>
+		<package name="entity"/>
+	</typeAliases>
+	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"/>
 			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver"/>
-				<property name="url" value="jdbc:mysql://localhost:3306/shiro"/>
-				<property name="username" value="root"/>
-				<property name="password" value="root"/>
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
 			</dataSource>
 		</environment>
 	</environments>
 	
+	<!-- <typeHandlers>
+		<typeHandler handler="extendTypeHandler" />
+		<typeHandler handler="implementTypeHandler"/>
+	</typeHandlers> -->
 	<mappers>
 		<mapper resource="mapper/mapper.xml"/>
 	</mappers>
