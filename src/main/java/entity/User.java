@@ -1,33 +1,66 @@
 package entity;
 
+import java.util.Date;
+import java.util.List;
 
 public class User {
-	private long id;
-	private String userName;
-	private String password;
-	private String password_salt;
-	public long getId() {
+	 private Integer id;
+	 
+	 private String username;
+	 
+	 private String sex;
+	 
+	 private String address;
+	 
+	 private Date birthday;
+	 
+	 private List<Order> orders;
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+
+	public String getUsername() {
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getSex() {
+		return sex;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
-	public String getPassword_salt() {
-		return password_salt;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setPassword_salt(String password_salt) {
-		this.password_salt = password_salt;
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 }
