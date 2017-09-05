@@ -3,6 +3,7 @@ package mapper;
 import java.util.List;
 
 import entity.Order;
+import entity.OrderDetail;
 import entity.User;
 
 public interface OrderCustomMapper {
@@ -13,4 +14,6 @@ public interface OrderCustomMapper {
 	List<Order> findOrderUserDetail();
 	
 	List<User> findOrderUserDetailExt();
+	
+	OrderDetail findOrderDetailExt(int id);
 }

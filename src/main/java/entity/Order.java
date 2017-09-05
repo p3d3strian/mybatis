@@ -6,7 +6,7 @@ import java.util.List;
 public class Order {
 	private Integer id;
 	
-	private Integer user_id;
+	private Integer userId;
 	
 	private String number;
 	
@@ -26,12 +26,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public Integer getUser_id() {
-		return user_id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getNumber() {

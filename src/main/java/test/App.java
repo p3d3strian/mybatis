@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import entity.Order;
 import entity.OrderCustom;
+import entity.OrderDetail;
 import entity.User;
 import mapper.OrderCustomMapper;
 
@@ -31,8 +32,18 @@ public class App {
     {
     	App a=new App();
 //    	a.t1();
-    	a.t2();
+//    	a.t2();
+    	a.t3();
     }
+
+    
+	private void t3() {
+		
+		SqlSession openSession = ssf.openSession();
+		OrderCustomMapper mapper = openSession.getMapper(OrderCustomMapper.class);
+		OrderDetail od = mapper.findOrderDetailExt(2);
+		System.out.println();
+	}
 
 	private void t2() {
 		SqlSession openSession = ssf.openSession();

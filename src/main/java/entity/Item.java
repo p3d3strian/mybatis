@@ -5,7 +5,7 @@ import java.util.Date;
 public class Item {
 	private Integer id;
 	
-	private String itemsName;
+	private String itemName;
 	
 	private float price;
 	
@@ -23,12 +23,12 @@ public class Item {
 		this.id = id;
 	}
 
-	public String getItemsName() {
-		return itemsName;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setItemsName(String itemsName) {
-		this.itemsName = itemsName;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
 	public float getPrice() {

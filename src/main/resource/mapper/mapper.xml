@@ -41,7 +41,7 @@
 		</collection>
 	</resultMap>
 	
-	<resultMap type="user" id="findUser">
+	<resultMap type="user" id="findUserExt">
 		<id column="userid" property="id"/>
 		<result column="username" property="username"/>
 		<result column="sex" property="sex"/>
@@ -93,7 +93,7 @@
 		AND b.id=c.order_id
 	</select>
 	
-	<select id="findOrderUserDetailExt" resultMap="">
+	<select id="findOrderUserDetailExt" >
 		SELECT 
 		a.*,
 		b.id userid,
@@ -113,4 +113,31 @@
 		AND b.id=c.order_id
 		AND c.item_id=d.id
 	</select>
+	
+	<resultMap type="orderDetail" id="orderDetailExtResultMap">
+		<id column="id" property="id"/>
+		<result column="order_id" property="orderId"/>
+		<result column="item_id" property="itemId"/>
+		<result column="item_num" property="itemNum"/>
+		
+		<association property="item" column="item_id" select="findItem"></association>
+	</resultMap>
+	
+	<resultMap type="item" id="itemResultMap">
+		<id column="id" property="id"/>
+		<result column="itemName" property="itemName"/>
+		<result column="price" property="price"/>
+		<result column="detail" property="detail"/>
+		<result column="picture" property="picture"/>
+		<result column="createTime" property="createTime"/>
+	</resultMap>
+	
+	<select id="findItem" resultMap="itemResultMap">
+		SELECT * FROM item WHERE id=#{id}
+	</select>
+	
+	<select id="findOrderDetailExt" resultMap="orderDetailExtResultMap">
+		SELECT * FROM orderdetail WHERE id=#{id}
+	</select>
+	
 </mapper>
