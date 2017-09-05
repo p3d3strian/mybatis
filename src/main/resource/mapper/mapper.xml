@@ -140,4 +140,9 @@
 		SELECT * FROM orderdetail WHERE id=#{id}
 	</select>
 	
+	<select id="findItemTest" resultType="item">
+		SELECT * FROM item WHERE itemname='${name}'
+	</select>
+	
+	
 </mapper>

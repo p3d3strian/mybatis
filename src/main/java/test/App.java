@@ -2,6 +2,7 @@ package test;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -33,10 +34,19 @@ public class App {
     	App a=new App();
 //    	a.t1();
 //    	a.t2();
-    	a.t3();
+//    	a.t3();
+    	a.t4();
     }
 
     
+	private void t4() {
+		SqlSession openSession = ssf.openSession();
+		OrderCustomMapper mapper = openSession.getMapper(OrderCustomMapper.class);
+		HashMap hashMap = new HashMap();
+		hashMap.put("name", "anything' or '1'='1");
+		mapper.findItemTest(hashMap);
+	}
+
 	private void t3() {
 		
 		SqlSession openSession = ssf.openSession();

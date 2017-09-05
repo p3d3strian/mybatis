@@ -1,7 +1,9 @@
 package mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
+import entity.Item;
 import entity.Order;
 import entity.OrderDetail;
 import entity.User;
@@ -16,4 +18,6 @@ public interface OrderCustomMapper {
 	List<User> findOrderUserDetailExt();
 	
 	OrderDetail findOrderDetailExt(int id);
+	
+	List<Item> findItemTest(HashMap m);
 }

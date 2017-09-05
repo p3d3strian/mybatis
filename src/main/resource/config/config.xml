@@ -7,6 +7,10 @@
 	<properties resource="properties/prop.properties">
 	</properties>
 	
+	<typeHandlers>
+		<typeHandler handler=""/>
+	</typeHandlers>
+	
 	<typeAliases>
 		<package name="entity"/>
 	</typeAliases>
@@ -23,7 +27,7 @@
 		</environment>
 	</environments>
 	
-	<mappers>
-		<mapper resource="mapper/mapper.xml"/>
+	<mappers >
+		<mapper resource="mapper/mapper.xml" />
 	</mappers>
 </configuration>
