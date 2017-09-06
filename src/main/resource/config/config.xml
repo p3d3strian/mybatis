@@ -6,13 +6,10 @@
 <configuration>
 	<properties resource="properties/prop.properties">
 	</properties>
-	
-	<typeHandlers>
-		<typeHandler handler=""/>
-	</typeHandlers>
-	
 	<typeAliases>
+		
 		<package name="entity"/>
+		<typeAlias type="mapper.Item" alias="u"/>
 	</typeAliases>
 	
 	<environments default="development">

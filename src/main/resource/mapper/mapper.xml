@@ -3,146 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.OrderCustomMapper">
-	
-	<resultMap type="order" id="orderResultMap">
-		<!-- 普通属性的映射 -->					
-		<id column="id" property="id"/>
-		<result column="user_id" property="user_id"/>
-		<result column="number" property="number"/>
-		<result column="createTime" property="createTime"/>
-		<result column="note" property="note"/>
-		
-		<!-- bean类型属性的映射，而且这个属性是非集合类型 -->
-		<association property="user" javaType="user">
-			<result column="username" property="username"/>
-			<result column="sex" property="sex"/>
-			<result column="address" property="address"/>
-		</association>
-	</resultMap>
-	
-	<resultMap type="order" id="orderDetailResultMap" extends="orderResultMap">
-		<collection property="orderDetails" ofType="orderDetail">
-			<result column="item_id" property="itemId"/>
-			<result column="item_num" property="itemNum"/>
-		</collection>
-	</resultMap>
-	
-	<resultMap type="user" id="userResultMap">
-		<result column="username" property="username"/>
-		<result column="sex" property="sex"/>
-		<result column="address" property="address"/>
-		
-		<collection property="orders" ofType="order">
-			<id column="id" property="id"/>
-			<result column="user_id" property="user_id"/>
-			<result column="number" property="number"/>
-			<result column="createTime" property="createTime"/>
-			<result column="note" property="note"/>
-		</collection>
-	</resultMap>
-	
-	<resultMap type="user" id="findUserExt">
-		<id column="userid" property="id"/>
-		<result column="username" property="username"/>
-		<result column="sex" property="sex"/>
-		<result column="address" property="address"/>
-		<result column="birthday" property="birthday"/>
-		
-		<collection property="orders" ofType="order">
-			<id column="id" property="id"/>
-			<result column="user_id" property="user_id"/>
-			<result column="number" property="number"/>
-			<result column="createTime" property="createTime"/>
-			<result column="note" property="note"/>
-			
-			<collection property="orderDetails" ofType="orderDetail">
-				<result column="item_id" property="itemId"/>
-				<result column="item_num" property="itemNum"/>
-				
-				<association property="item" javaType="item">
-					<id column="item_id" property="id"/>
-					<result column="itemname" property="itemname"/>
-					<result column="price" property="price"/>
-					<result column="detail" property="detail"/>
-					<result column="productdate" property="productdate"/>
-				</association>
-			</collection>
-		</collection>
-	</resultMap>
 
-	<select id="findOrderUser" resultMap="userResultMap">
-		SELECT 
-		a.*,b.username,b.sex,b.address
-		FROM
-		orders a,t_user b
-		WHERE a.user_id=b.id
-	</select>
+	<update id="updateItem" parameterType="u">
+		UPDATE item
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="itemName!=null or itemName">
+				,itemName=#{itemName}
+			</if>
+			<if test="price!=null or price">
+				,price=#{price}
+			</if>
+		</trim>
+		WHERE id=#{id}
+	</update>
 
-	<select id="findOrderUserDetail" resultMap="orderDetailResultMap">
-		SELECT 
-		a.*,
-		b.username,
-		b.sex,
-		b.address,
-		b.birthday,
-		c.item_id,
-		c.item_num
-		FROM
-		orders a,t_user b,orderdetail c
-		WHERE a.user_id=b.id
-		AND b.id=c.order_id
-	</select>
-	
-	<select id="findOrderUserDetailExt" >
-		SELECT 
-		a.*,
-		b.id userid,
-		b.username,
-		b.sex,
-		b.address,
-		b.birthday,
-		c.item_id,
-		c.item_num,
-		d.itemname,
-		d.price,
-		d.detail,
-		d. createtime productdate
-		FROM
-		orders a,t_user b,orderdetail c,item d
-		WHERE a.user_id=b.id
-		AND b.id=c.order_id
-		AND c.item_id=d.id
-	</select>
-	
-	<resultMap type="orderDetail" id="orderDetailExtResultMap">
-		<id column="id" property="id"/>
-		<result column="order_id" property="orderId"/>
-		<result column="item_id" property="itemId"/>
-		<result column="item_num" property="itemNum"/>
-		
-		<association property="item" column="item_id" select="findItem"></association>
-	</resultMap>
-	
-	<resultMap type="item" id="itemResultMap">
-		<id column="id" property="id"/>
-		<result column="itemName" property="itemName"/>
-		<result column="price" property="price"/>
-		<result column="detail" property="detail"/>
-		<result column="picture" property="picture"/>
-		<result column="createTime" property="createTime"/>
-	</resultMap>
-	
-	<select id="findItem" resultMap="itemResultMap">
-		SELECT * FROM item WHERE id=#{id}
-	</select>
-	
-	<select id="findOrderDetailExt" resultMap="orderDetailExtResultMap">
-		SELECT * FROM orderdetail WHERE id=#{id}
-	</select>
-	
-	<select id="findItemTest" resultType="item">
-		SELECT * FROM item WHERE itemname='${name}'
-	</select>
-	
-	
 </mapper>

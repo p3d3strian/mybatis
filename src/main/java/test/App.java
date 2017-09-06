@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import entity.Item;
 import entity.Order;
-import entity.OrderCustom;
 import entity.OrderDetail;
 import entity.User;
 import mapper.OrderCustomMapper;
@@ -35,10 +35,21 @@ public class App {
 //    	a.t1();
 //    	a.t2();
 //    	a.t3();
-    	a.t4();
+//    	a.t4();
+    	a.t5();
     }
 
-    
+	private void t5() {
+		SqlSession openSession = ssf.openSession();
+		OrderCustomMapper mapper = openSession.getMapper(OrderCustomMapper.class);
+		
+		Item item = new Item();
+		item.setId(1);
+		item.setItemName("ps4");
+		
+		mapper.updateItem(item);
+	}
+
 	private void t4() {
 		SqlSession openSession = ssf.openSession();
 		OrderCustomMapper mapper = openSession.getMapper(OrderCustomMapper.class);

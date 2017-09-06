@@ -20,4 +20,6 @@ public interface OrderCustomMapper {
 	OrderDetail findOrderDetailExt(int id);
 	
 	List<Item> findItemTest(HashMap m);
+	
+	void updateItem(Item item);
 }
